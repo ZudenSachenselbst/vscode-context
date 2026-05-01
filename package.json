@@ -1,0 +1,75 @@
+{
+  "name": "vscode-context",
+  "displayName": "vscode-context",
+  "description": "custom context",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.69.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:vscode-context.toRed",
+    "onCommand:vscode-context.toBlue",
+    "onCommand:vscode-context.toGreen"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscode-context.toRed",
+        "title": "選択範囲を赤"
+      },
+      {
+        "command": "vscode-context.toBlue",
+        "title": "選択範囲を青"
+      },
+      {
+        "command": "vscode-context.toGreen",
+        "title": "選択範囲を緑"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorHasSelection",
+          "command": "vscode-context.toRed",
+          "group": "myGroup@1"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "vscode-context.toBlue",
+          "group": "myGroup@2"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "vscode-context.toGreen",
+          "group": "myGroup@3"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.69.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.18.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.4",
+    "vsce": "^2.9.2"
+  }
+}
